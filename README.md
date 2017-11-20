@@ -18,4 +18,4 @@ To prevent any issue related to version specific bug, the project is running on 
 Please check your version.
 
 ### Scripts
-* `bin/rails server`: Start server on development mode (listening on `0.0.0.0:3000`)
+* `bin/rails server`: Start server on development mode (listening on `localhost:3000`)
