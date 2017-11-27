@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: airbnb_production
-  username: airbnb
+  database: hetic-g2-01_production
+  username: hetic-g2-01
   password: <%= ENV['AIRBNB_DATABASE_PASSWORD'] %>
