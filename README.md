@@ -12,6 +12,8 @@ cd airbnb-ror/
 bundle install # Install dependencies
 ```
 
+Don't forget to install [Postgres](http://postgresapp.com) and create a database named `airbnb_development` for local.
+
 You also might want to install [EditorConfig](http://editorconfig.org), please check the plugin for your IDE [here](http://editorconfig.org/#example-file).
 
 ### Requirement
