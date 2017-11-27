@@ -1,0 +1,18 @@
+<h1>Airbnb</h1>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert"><%= alert %></p>
+<% end %>
+
+<div>
+  <% if !user_signed_in? %>
+    <%= link_to 'Inscription', new_user_registration_path %>
+    <%= link_to 'Identification', new_user_session_path %>
+  <% else %>
+    <p><%= current_user.inspect %></p>
+    <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %>
+  <% end %>
+</div>
