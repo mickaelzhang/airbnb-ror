@@ -14,5 +14,10 @@ module Airbnb
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    # Whitelist locales available for the application
+    I18n.available_locales = [:fr, :en]
+    # Set default locale to :fr
+    I18n.default_locale = :fr
   end
 end
