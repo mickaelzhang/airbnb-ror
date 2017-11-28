@@ -13,6 +13,7 @@
     <%= link_to 'Identification', new_user_session_path %>
   <% else %>
     <p><%= current_user.inspect %></p>
+    <%= link_to 'Edit', edit_user_registration_path %>
     <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %>
   <% end %>
 </div>
