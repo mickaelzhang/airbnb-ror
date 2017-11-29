@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
+    resources :islands
+
     devise_for :users, path: 'auth',
       path_name: {
         sign_in: 'login',

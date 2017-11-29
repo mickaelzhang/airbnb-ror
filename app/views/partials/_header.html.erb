@@ -1,4 +1,4 @@
-<h1>Airbnb</h1>
+<h1><%= link_to 'Airbnb', root_path %></h1>
 
 <% if notice %>
   <p class="notice"><%= notice %></p>
@@ -8,11 +8,12 @@
 <% end %>
 
 <div>
+  <%= link_to 'Liste annonce', islands_path %>
   <% if !user_signed_in? %>
     <%= link_to 'Inscription', new_user_registration_path %>
     <%= link_to 'Identification', new_user_session_path %>
   <% else %>
-    <p><%= current_user.inspect %></p>
+    <%= link_to 'Créer une annonce', new_island_path %>
     <%= link_to 'Edit', edit_user_registration_path %>
     <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %>
   <% end %>
