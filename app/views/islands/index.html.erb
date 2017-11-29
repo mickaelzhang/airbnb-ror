@@ -1,0 +1,8 @@
+<h2><%= t('island.index.title') %></h2>
+
+<% @islands.each do |island| %>
+  <div>
+    <span><%= island.title %></span>
+    <%= link_to 'Show', island_path(island) %>
+  </div>
+<% end %>

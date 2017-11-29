@@ -31,3 +31,10 @@
 
 fr:
   hello: "Bonjour monde"
+  island:
+    index:
+      title: "Liste des îles"
+    new:
+      title: "Création nouvelle ile"
+    edit:
+      title: "Editez l'ile"
