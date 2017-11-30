@@ -1,5 +1,6 @@
 class IslandsController < ApplicationController
   before_action :set_island, only: [:show, :edit, :update]
+  before_action :require_author, only: [:edit, :update]
 
   def index
     @islands = Island.all
@@ -35,12 +36,18 @@ class IslandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def island_params
+      params.require(:island).permit(:title, :description)
+    end
+
     def set_island
       @island = Island.find(params[:id])
     end
 
-    def island_params
-      params.require(:island).permit(:title, :description)
+    # Required to be the author of the island to access those pages
+    def require_author
+      if current_user.id != @island.user_id
+        redirect_to @island
+      end
     end
 end

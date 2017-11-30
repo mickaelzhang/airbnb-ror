@@ -1,5 +1,8 @@
 <h2><%= @island.title %></h2>
-<td><%= link_to 'Edit', edit_island_path %></td>
+<% if current_user.id == @island.user_id %>
+  <div><%= link_to 'Edit', edit_island_path %></div>
+<% end %>
+
 <p><%= @island.description %></p>
 
 <%= link_to 'Back', islands_path %>
