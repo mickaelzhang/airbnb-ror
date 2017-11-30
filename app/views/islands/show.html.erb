@@ -1,5 +1,5 @@
 <h2><%= @island.title %></h2>
-<% if current_user.id == @island.user_id %>
+<% if user_signed_in? && current_user.id == @island.user_id %>
   <div><%= link_to 'Edit', edit_island_path %></div>
 <% end %>
 
