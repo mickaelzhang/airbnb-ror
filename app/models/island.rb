@@ -3,4 +3,5 @@ class Island < ApplicationRecord
   validates :description, presence: true, length: {maximum: 300}
 
   belongs_to :user
+  has_many :bookings
 end
