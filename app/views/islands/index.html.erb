@@ -1,8 +1,26 @@
+<% booking = params['booking'] %>
 <h2><%= t('island.index.title') %></h2>
+
+<% if !booking.nil? %>
+  <div>
+    <div>
+      <span>Start :</span>
+      <span><%= l Date.parse(booking['start_date']) %></span>
+    </div>
+    <div>
+      <span>End :</span>
+      <span><%= l Date.parse(booking['end_date']) %></span>
+    </div>
+  </div>
+<% end %>
 
 <% @islands.each do |island| %>
   <div>
     <span><%= island.title %></span>
-    <%= link_to 'Show', island_path(island) %>
+    <%=
+      link_to_if(booking.nil?, "Show", island_path(island)) do
+          link_to('Show', island_path(island, :booking => { :start_date => booking['start_date'], :end_date => booking['end_date'] }))
+      end
+    %>
   </div>
 <% end %>

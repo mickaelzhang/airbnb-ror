@@ -3,7 +3,19 @@ class IslandsController < ApplicationController
   before_action :require_author, only: [:edit, :update]
 
   def index
-    @islands = Island.all
+    if !params.has_key?(:booking)
+      @islands = Island.all
+    else
+      search = params['booking']
+      not_available_islands = Island.not_available_list(search['start_date'], search['end_date'])
+      excluded_island_id = []
+
+      not_available_islands.each do |i|
+        excluded_island_id.push(i.id)
+      end
+
+      @islands = Island.where.not(id: excluded_island_id)
+    end
   end
 
   def new
@@ -22,6 +34,12 @@ class IslandsController < ApplicationController
   end
 
   def show
+    search = params['booking']
+    @booking = Booking.new
+    if params.has_key?(:booking)
+      @is_available = !Island.not_available_list(search['start_date'], search['end_date'])
+        .exists?(id: params[:id])
+    end
   end
 
   def edit
