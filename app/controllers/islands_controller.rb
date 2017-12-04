@@ -3,7 +3,12 @@ class IslandsController < ApplicationController
   before_action :require_author, only: [:edit, :update]
 
   def index
-    @islands = Island.all
+    if !params.has_key?(:search)
+      @islands = Island.all
+    else
+      search = params['search']
+      @islands = Island.available_between(search['start_date'], search['end_date'])
+    end
   end
 
   def new
