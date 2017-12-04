@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171130164727) do
   create_table "islands", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

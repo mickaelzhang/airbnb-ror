@@ -1,7 +1,12 @@
 class Island < ApplicationRecord
+
+  mount_uploader :image, ImageUploader
+
   validates :title, presence: true, length: {maximum: 65}
   validates :description, presence: true, length: {maximum: 300}
-
+  validates_processing_of :image
+  validate :image_size_validation
+ 
   belongs_to :user
   has_many :bookings
 
@@ -29,4 +34,10 @@ class Island < ApplicationRecord
     available_between(start_date, end_date)
       .exists?(:islands => { :id => island_id })
   }
+
+  private
+  def image_size_validation
+    errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes
+  end
+
 end
