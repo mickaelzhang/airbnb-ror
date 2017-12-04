@@ -1,13 +1,13 @@
 <h2><%= t('home.hero.title') %></h2>
 <%= form_tag({controller: "islands", action: "index"}, method: "get") do %>
   <p>
-    <%= label :search, :start_date, "Start date" %><br>
-    <%= date_field :search, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
+    <%= label :booking, :start_date, "Start date" %><br>
+    <%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
   </p>
 
   <p>
-    <%= label :search, :end_date, "End date" %><br>
-    <%= date_field :search, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
+    <%= label :booking, :end_date, "End date" %><br>
+    <%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
   </p>
   <%= submit_tag 'Validez' %>
 <% end %>

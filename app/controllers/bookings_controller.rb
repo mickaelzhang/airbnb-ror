@@ -1,12 +1,22 @@
 class BookingsController < ApplicationController
   def create
-    @booking = Booking.new(new_booking_params)
-    @booking.user_id = current_user.id
+    s = params['booking']
+    is_available = !Island.not_available_list(s['start_date'], s['end_date'])
+      .exists?(:islands => { :id => s['island_id'] })
 
-    if @booking.save
-      redirect_to @booking, notice: 'Island is booked.'
+    @island = Island.find(s['island_id'])
+
+    if is_available
+      @booking = Booking.new(new_booking_params)
+      @booking.user_id = current_user.id
+
+      if @booking.save
+        redirect_to @booking, notice: "You have booked '#{@island.title}'."
+      else
+        redirect_to @island
+      end
     else
-      redirect_to @island.find(params['booking']['island_id'])
+      redirect_to @island, notice: "'#{@island.title}' is already booked at this date by someone else."
     end
   end
 
