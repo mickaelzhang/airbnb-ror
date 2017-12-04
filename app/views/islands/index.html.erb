@@ -1,13 +1,19 @@
 <% search = params['search'] %>
 <h2><%= t('island.index.title') %></h2>
-<div>
-  <span>Start :</span>
-  <span><%= l Date.parse(search['start_date']) %></span>
-</div>
-<div>
-  <span>End :</span>
-  <span><%= l Date.parse(search['end_date']) %></span>
-</div>
+
+<% if !search.nil? %>
+  <div>
+    <div>
+      <span>Start :</span>
+      <span><%= l Date.parse(search['start_date']) %></span>
+    </div>
+    <div>
+      <span>End :</span>
+      <span><%= l Date.parse(search['end_date']) %></span>
+    </div>
+  </div>
+<% end %>
+
 <% @islands.each do |island| %>
   <div>
     <span><%= island.title %></span>
