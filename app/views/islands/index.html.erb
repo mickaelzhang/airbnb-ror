@@ -19,7 +19,7 @@
     <span><%= island.title %></span>
     <%=
       link_to_if(search.nil?, "Show", island_path(island)) do
-          link_to('Show', island_path(island, :start_date => search['start_date'], :end_date => search['end_date']))
+          link_to('Show', island_path(island, :search => { :start_date => search['start_date'], :end_date => search['end_date'] }))
       end
     %>
   </div>
