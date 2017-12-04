@@ -1,5 +1,3 @@
-<% search = params['search'] %>
-
 <h2><%= @island.title %></h2>
 <% if user_signed_in? && current_user.id == @island.user_id %>
   <div><%= link_to 'Edit', edit_island_path %></div>
@@ -7,13 +5,7 @@
 
 <p><%= @island.description %></p>
 
-<%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
-    <%= f.hidden_field :island_id, value: @island.id %>
-    <%= f.hidden_field :start_date, value: search['start_date'] %>
-    <%= f.hidden_field :end_date, value: search['end_date'] %>
-    <%= f.submit 'Book' %>
-<% end %>
+<%= render "islands/book_island_sidebar" %>
 
-<br>
 
 <%= link_to 'Back', islands_path %>
