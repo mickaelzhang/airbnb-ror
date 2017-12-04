@@ -30,8 +30,7 @@ class IslandsController < ApplicationController
     search = params['search']
     @booking = Booking.new
     if params.has_key?(:search)
-      @is_available = Island.available_between(search['start_date'], search['end_date'])
-        .exists?(:islands => { :id => params['id'] })
+      @is_available = Island.by_id_available_between(params['id'], search['start_date'], search['end_date'])
     end
   end
 

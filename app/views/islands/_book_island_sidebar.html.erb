@@ -3,7 +3,7 @@
 <div>
   <% if user_signed_in? %>
     <% if !search.nil? %>
-      <% if @is_available %>
+      <% if @is_available == true %>
         <%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
           <%= f.hidden_field :island_id, value: @island.id %>
           <%= f.hidden_field :start_date, value: search['start_date'] %>
