@@ -5,9 +5,9 @@ class Island < ApplicationRecord
   belongs_to :user
   has_many :bookings
 
-  def self.available_between(state_date, end_date)
+  scope :available_between, -> (state_date, end_date) {
     joins("LEFT JOIN bookings ON bookings.island_id = islands.id")
       .includes(:bookings)
       .where("(? < bookings.start_date) OR (bookings.end_date < ?) OR (bookings.id is null)", end_date, state_date)
-  end
+  }
 end

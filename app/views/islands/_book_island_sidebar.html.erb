@@ -3,12 +3,17 @@
 <div>
   <% if user_signed_in? %>
     <% if !search.nil? %>
-      <%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
-        <%= f.hidden_field :island_id, value: @island.id %>
-        <%= f.hidden_field :start_date, value: search['start_date'] %>
-        <%= f.hidden_field :end_date, value: search['end_date'] %>
-        <%= f.submit 'Book this island' %>
+      <% if @is_available %>
+        <%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
+          <%= f.hidden_field :island_id, value: @island.id %>
+          <%= f.hidden_field :start_date, value: search['start_date'] %>
+          <%= f.hidden_field :end_date, value: search['end_date'] %>
+          <%= f.submit 'Book this island' %>
+        <% end %>
+      <% else %>
+        <div>Already booked</div>
       <% end %>
+
     <% else %>
       <%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
         <%= f.hidden_field :island_id, value: @island.id %>
@@ -16,7 +21,6 @@
           <%= label :search, :start_date, "Start date" %><br>
           <%= date_field :search, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
         </p>
-
         <p>
           <%= label :search, :end_date, "End date" %><br>
           <%= date_field :search, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
