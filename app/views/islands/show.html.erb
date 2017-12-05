@@ -5,5 +5,9 @@
 
 <p><%= @island.description %></p>
 
+<% if !@island.image.nil? %>
+  <img src="<%= @island.image %>">
+<% end %>
+
 <%= render "islands/book_island_sidebar" %>
 <%= link_to 'Back', islands_path %>
