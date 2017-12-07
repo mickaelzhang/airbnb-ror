@@ -25,10 +25,10 @@ fr:
         unconfirmed_email: Courriel non confirmé
         unlock_token: Clé de déverrouillage
         updated_at: Date de mise à jour
-      islands:
-        type: Type
-        size: Taille
-        location: Localisation
+      island:
+        island_type: Type d'île
+        size: Taille de l'île
+        location: Localisation de l'île
         nb_accomodation: Nombre d'hébergement
         max_person: Nombre de personne total
         max_bed_room: Nombre de chambre total
@@ -37,7 +37,7 @@ fr:
         adress: Adresse
         island_options: Options sur l'île
         additional_comment: Commentaire additionnel
-        price_by_night: Prix par nuit
+        price_by_night: Prix par nuit (en €)
     models:
       user: Utilisateur
       island: Ile

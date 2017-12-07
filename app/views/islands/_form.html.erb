@@ -18,10 +18,12 @@
     <%= form.text_field :title %>
   </p>
 
-  <p>
-    <%= form.label :type %><br>
-    <%= form.text_field :island_type %>
-  </p>
+  <%= form.label :island_type %><br>
+  <select name="island[island_type]" id="post_island_type_id">
+    <option value="">Selectionner le type</option>
+    <option value="private">Ile privée</option>
+    <option value="shared">Ile partagée</option>
+  </select>
 
   <p>
   <%= form.label :size %><br>
