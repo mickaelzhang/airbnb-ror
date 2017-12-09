@@ -67,5 +67,5 @@ class IslandsController < ApplicationController
       if current_user.id != @island.user_id
         redirect_to @island
       end
-    end
+  end
 end
