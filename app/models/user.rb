@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   validates :first_name, presence: true, length: {maximum: 65}
   validates :last_name, presence: true, length: {maximum: 65}
-  has_many :islands
 
+  has_many :islands
+  has_many :bookings
 end

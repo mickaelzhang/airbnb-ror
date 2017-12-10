@@ -1,0 +1,38 @@
+<% booking = params['booking'] %>
+
+<div>
+  <% if user_signed_in? %>
+    <% if !booking.nil? %>
+      <% if @is_available %>
+        <%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
+          <%= f.hidden_field :island_id, value: @island.id %>
+          <div>
+            <%= f.date_field :start_date, value: booking['start_date'], :readonly => true %>
+          </div>
+          <div>
+            <%= f.date_field :end_date, value: booking['end_date'], :readonly => true %>
+          </div>
+          <%= f.submit 'Book this island' %>
+        <% end %>
+      <% else %>
+        <div>Already booked</div>
+      <% end %>
+
+    <% else %>
+      <%= form_for(@booking, url: {controller: "bookings", action: "create"}) do |f| %>
+        <%= f.hidden_field :island_id, value: @island.id %>
+        <div>
+          <%= label :booking, :start_date, "Start date" %><br>
+          <%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
+        </div>
+        <div>
+          <%= label :booking, :end_date, "End date" %><br>
+          <%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
+        </div>
+        <%= f.submit 'Book this island' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to 'Book this island', new_user_registration_path %>
+  <% end %>
+</div>

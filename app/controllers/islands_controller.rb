@@ -1,8 +1,21 @@
 class IslandsController < ApplicationController
   before_action :set_island, only: [:show, :edit, :update]
+  before_action :require_author, only: [:edit, :update]
 
   def index
-    @islands = Island.all
+    if !params.has_key?(:booking)
+      @islands = Island.all
+    else
+      search = params['booking']
+      not_available_islands = Island.not_available_list(search['start_date'], search['end_date'])
+      excluded_island_id = []
+
+      not_available_islands.each do |i|
+        excluded_island_id.push(i.id)
+      end
+
+      @islands = Island.where.not(id: excluded_island_id)
+    end
   end
 
   def new
@@ -21,6 +34,12 @@ class IslandsController < ApplicationController
   end
 
   def show
+    search = params['booking']
+    @booking = Booking.new
+    if params.has_key?(:booking)
+      @is_available = !Island.not_available_list(search['start_date'], search['end_date'])
+        .exists?(id: params[:id])
+    end
   end
 
   def edit
@@ -35,14 +54,18 @@ class IslandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_island
-      @island = Island.find(params[:id])
-    end
-
     def island_params
       params.require(:island).permit!
     end
 
-    @island = {island: { island_options: ['swimming_pool', 'jacuzzi', 'personal_cooker'] }}
+    def set_island
+      @island = Island.find(params[:id])
+    end
+
+    # Required to be the author of the island to access those pages
+    def require_author
+      if current_user.id != @island.user_id
+        redirect_to @island
+      end
+    end
 end
