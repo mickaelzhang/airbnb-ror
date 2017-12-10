@@ -27,7 +27,7 @@
 
   <p>
   <%= form.label :size %><br>
-  <%= form.number_field :size%>
+  <%= form.number_field :size, {min:1} %>
 </p>
 
   <p>
@@ -37,7 +37,7 @@
 
   <p>
     <%= form.label :nb_accomodation %><br>
-    <%= form.number_field :nb_accomodation, {max: 30, min:1} %>
+    <%= form.number_field :nb_accomodation, {min:1} %>
   </p>
 
   <p>
@@ -67,7 +67,11 @@
 
   <p>
     <%= form.label :island_options %><br>
-    <%= form.text_field :island_options %>
+    <% island_options = ['piscine', 'jacuzzi', 'cuisinier_personnel'] %>
+    <% island_options.each do |island_option| %>
+    <%= form.check_box :island_options, {multiple: true}, island_option, false %>
+    <%= form.label island_option %><br>
+    <% end %>
   </p>
 
   <p>
@@ -77,7 +81,7 @@
 
   <p>
     <%= form.label :price_by_night %><br>
-    <%= number_field(:island, :price_by_night, in: 50..50000) %>
+    <%= number_field(:island, :price_by_night) %>
   </p>
 
   <p>
