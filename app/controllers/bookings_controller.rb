@@ -1,4 +1,11 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    user = User.find(current_user.id)
+    @bookings = user.bookings
+  end
+
   def create
     search = params['booking']
 
