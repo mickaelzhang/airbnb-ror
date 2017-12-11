@@ -25,8 +25,22 @@ fr:
         unconfirmed_email: Courriel non confirmé
         unlock_token: Clé de déverrouillage
         updated_at: Date de mise à jour
+      island:
+        island_type: Type d'île
+        size: Taille de l'île
+        location: Localisation de l'île
+        nb_accomodation: Nombre d'hébergement
+        max_person: Nombre de personne total
+        max_bed_room: Nombre de chambre total
+        max_bed: Nombre de lit
+        max_bath_room: Nombre de salle de bain
+        adress: Adresse
+        island_options: Options sur l'île
+        additional_comment: Commentaire additionnel
+        price_by_night: Prix par nuit (en €)
     models:
       user: Utilisateur
+      island: Ile
   devise:
     confirmations:
       confirmed: Votre compte a été confirmé avec succès.

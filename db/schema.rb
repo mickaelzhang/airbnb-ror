@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205103610) do
+ActiveRecord::Schema.define(version: 20171207142355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20171205103610) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "island_type"
+    t.integer "size"
+    t.string "location"
+    t.integer "nb_accomodation"
+    t.integer "max_person"
+    t.integer "max_bed_room"
+    t.integer "max_bed"
+    t.integer "max_bath_room"
+    t.string "address"
+    t.text "island_options"
+    t.text "additional_comment"
+    t.integer "price_by_night"
     t.string "image"
     t.index ["user_id"], name: "index_islands_on_user_id"
   end
