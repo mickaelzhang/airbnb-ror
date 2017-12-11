@@ -1,4 +1,5 @@
 class IslandsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_island, only: [:show, :edit, :update]
   before_action :require_author, only: [:edit, :update]
 
