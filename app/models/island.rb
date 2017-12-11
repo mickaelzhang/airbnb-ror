@@ -37,10 +37,16 @@ class Island < ApplicationRecord
         start_date, end_date, start_date, end_date, start_date, start_date, end_date, end_date)
   end
 
-  scope :by_id_available_between, -> (island_id, start_date, end_date) {
-    available_between(start_date, end_date)
-      .exists?(:islands => { :id => island_id })
-  }
+  # Return a boolean depending if the island is available or not
+  def is_available_between(start_date, end_date)
+    number_of_booking = self.bookings.where('(? <= bookings.start_date AND bookings.start_date <= ?)
+        OR (? <= bookings.end_date AND bookings.end_date <= ?)
+        OR (bookings.start_date <= ? AND ? <= bookings.end_date)
+        OR (bookings.start_date <= ? AND ? <= bookings.end_date)',
+        start_date, end_date, start_date, end_date, start_date, start_date, end_date, end_date).count
+
+    return  number_of_booking <= 0
+  end
 
   private
   def image_size_validation

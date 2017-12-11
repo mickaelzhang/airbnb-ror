@@ -1,10 +1,9 @@
 class BookingsController < ApplicationController
   def create
-    s = params['booking']
-    is_available = !Island.not_available_list(s['start_date'], s['end_date'])
-      .exists?(:islands => { :id => s['island_id'] })
+    search = params['booking']
 
-    @island = Island.find(s['island_id'])
+    @island = Island.find(search['island_id'])
+    is_available = @island.is_available_between(search['start_date'], search['end_date'])
 
     if is_available
       @booking = Booking.new(new_booking_params)
