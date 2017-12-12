@@ -1,6 +1,4 @@
 class Island < ApplicationRecord
-  belongs_to :user
-
   validates :title, presence: true
   validates :island_type, presence: true
   validates :description, presence: true
@@ -22,6 +20,7 @@ class Island < ApplicationRecord
 
   belongs_to :user
   has_many :bookings
+  has_many :ratings, through: :bookings
 
   def self.add_bookings
     joins("LEFT JOIN bookings ON bookings.island_id = islands.id")
@@ -46,6 +45,10 @@ class Island < ApplicationRecord
         start_date, end_date, start_date, end_date, start_date, start_date, end_date, end_date).count
 
     return  number_of_booking <= 0
+  end
+
+  def average_rating
+    self.ratings.average(:rating_score)
   end
 
   private

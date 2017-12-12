@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207142355) do
+ActiveRecord::Schema.define(version: 20171212205957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 20171207142355) do
     t.index ["user_id"], name: "index_islands_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_ratings_on_booking_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,4 +80,6 @@ ActiveRecord::Schema.define(version: 20171207142355) do
   add_foreign_key "bookings", "islands"
   add_foreign_key "bookings", "users"
   add_foreign_key "islands", "users"
+  add_foreign_key "ratings", "bookings"
+  add_foreign_key "ratings", "users"
 end

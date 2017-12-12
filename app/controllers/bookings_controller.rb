@@ -1,9 +1,12 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_booking, only: [:show]
+  before_action :show_access_right, only: [:show]
 
   def index
     user = User.find(current_user.id)
     @bookings = user.bookings
+    @rating = Rating.new
   end
 
   def create
@@ -27,12 +30,24 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
     @island = Island.find(@booking.island_id)
   end
 
   private
     def new_booking_params
       params.require(:booking).permit(:island_id, :start_date, :end_date)
+    end
+
+    def set_booking
+      @booking = Booking.find(params[:id])
+    end
+
+    def show_access_right
+      is_island_owner = @booking.island.user.id == current_user.id
+      is_booking_author = @booking.user.id == current_user.id
+
+      if !(is_booking_author || is_island_owner)
+        redirect_to @booking.island
+      end
     end
 end
