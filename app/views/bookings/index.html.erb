@@ -4,5 +4,6 @@
     <span><%= booking.island.title %></span>
     <span><%= l booking.start_date %> - <%= l booking.end_date %></span>
     <span><%= link_to("Show island", island_path(booking.island)) %></span>
+    <span><%= link_to("Booking detail", booking_path(booking)) %></span>
   </div>
 <% end %>
