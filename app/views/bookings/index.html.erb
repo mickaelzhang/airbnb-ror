@@ -15,5 +15,10 @@
     <span><%= l booking.start_date %> - <%= l booking.end_date %></span>
     <span><%= link_to("Show island", island_path(booking.island)) %></span>
     <span><%= link_to("Booking detail", booking_path(booking)) %></span>
+    <% if booking.rating %>
+      <span>Score : <%= booking.rating.rating_score %>/5</span>
+    <% else %>
+
+    <% end %>
   </div>
 <% end %>

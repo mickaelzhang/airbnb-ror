@@ -2,7 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :island
 
-  has_many :ratings
+  has_one :rating
 
   def duration
     (self.end_date - self.start_date).to_i + 1
