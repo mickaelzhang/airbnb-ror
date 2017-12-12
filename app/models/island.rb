@@ -1,6 +1,4 @@
 class Island < ApplicationRecord
-  belongs_to :user
-
   validates :title, presence: true
   validates :island_type, presence: true
   validates :description, presence: true
