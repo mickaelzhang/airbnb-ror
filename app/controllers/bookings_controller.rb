@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   def index
     user = User.find(current_user.id)
     @bookings = user.bookings
+    @rating = Rating.new
   end
 
   def create

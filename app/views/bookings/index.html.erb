@@ -18,7 +18,13 @@
     <% if booking.rating %>
       <span>Score : <%= booking.rating.rating_score %>/5</span>
     <% else %>
-
+      <%= form_with(model: @rating, local: true) do |f| %>
+        <%= f.hidden_field :booking_id, value: booking.id %>
+        <span>
+          <%= f.number_field :rating_score, in: 0..5 %>
+        </span>
+        <%= f.submit 'Rate' %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
