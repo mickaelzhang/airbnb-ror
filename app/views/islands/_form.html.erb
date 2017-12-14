@@ -18,6 +18,72 @@
     <%= form.text_field :title %>
   </p>
 
+  <%= form.label :island_type %><br>
+  <select name="island[island_type]" id="post_island_type_id">
+    <option value="">Selectionner le type</option>
+    <option value="private">Ile privée</option>
+    <option value="shared">Ile partagée</option>
+  </select>
+
+  <p>
+  <%= form.label :size %><br>
+  <%= form.number_field :size, {min:1} %>
+</p>
+
+  <p>
+    <%= form.label :location %><br>
+    <%= form.text_field :location %>
+  </p>
+
+  <p>
+    <%= form.label :nb_accomodation %><br>
+    <%= form.number_field :nb_accomodation, {min:1} %>
+  </p>
+
+  <p>
+    <%= form.label :max_person %><br>
+    <%= form.number_field :max_person, { min:1} %>
+  </p>
+
+  <p>
+    <%= form.label :max_bed_room %><br>
+    <%= form.number_field :max_bed_room, { min:1} %>
+  </p>
+
+  <p>
+    <%= form.label :max_bed %><br>
+    <%= form.number_field :max_bed, { min:1} %>
+  </p>
+
+  <p>
+    <%= form.label :max_bath_room %><br>
+    <%= form.number_field :max_bath_room, { min:1} %>
+  </p>
+
+  <p>
+    <%= form.label :address %><br>
+    <%= form.text_field :address %>
+  </p>
+
+  <p>
+    <%= form.label :island_options %><br>
+    <% island_options = ['piscine', 'jacuzzi', 'cuisinier_personnel'] %>
+    <% island_options.each do |island_option| %>
+    <%= form.check_box :island_options, {multiple: true}, island_option, false %>
+    <%= form.label island_option %><br>
+    <% end %>
+  </p>
+
+  <p>
+    <%= form.label :additional_comment %><br>
+    <%= form.text_area :additional_comment %>
+  </p>
+
+  <p>
+    <%= form.label :price_by_night %><br>
+    <%= number_field(:island, :price_by_night) %>
+  </p>
+
   <p>
     <%= form.label :description %><br>
     <%= form.text_area :description %>
@@ -29,12 +95,12 @@
     <% if form.object.image? %>
       <%= image_tag form.object.image.thumb.url %>
       <%= form.label :remove_image %>
-      <%= form.check_box :remove_image %> 
+      <%= form.check_box :remove_image %>
     <% end %>
   </p>
 
 
   <p>
     <%= form.submit 'Validez' %>
-  </p>
+  </div>
 <% end %>

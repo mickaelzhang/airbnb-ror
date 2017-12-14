@@ -1,4 +1,5 @@
 class IslandsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_island, only: [:show, :edit, :update]
   before_action :require_author, only: [:edit, :update]
 
@@ -37,8 +38,7 @@ class IslandsController < ApplicationController
     search = params['booking']
     @booking = Booking.new
     if params.has_key?(:booking)
-      @is_available = !Island.not_available_list(search['start_date'], search['end_date'])
-        .exists?(id: params[:id])
+      @is_available = @island.is_available_between(search['start_date'], search['end_date'])
     end
   end
 
@@ -55,7 +55,7 @@ class IslandsController < ApplicationController
 
   private
     def island_params
-      params.require(:island).permit(:title, :description, :image, :remove_image)
+      params.require(:island).permit!
     end
 
     def set_island

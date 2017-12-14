@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20171209135114) do
-=======
-ActiveRecord::Schema.define(version: 20171205103610) do
->>>>>>> a94f5289ff4bd8c5a53d045dffe82a2ae8a64630
+ActiveRecord::Schema.define(version: 20171212205957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +29,33 @@ ActiveRecord::Schema.define(version: 20171205103610) do
   create_table "islands", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "island_type"
+    t.integer "size"
+    t.string "location"
+    t.integer "nb_accomodation"
+    t.integer "max_person"
+    t.integer "max_bed_room"
+    t.integer "max_bed"
+    t.integer "max_bath_room"
+    t.string "address"
+    t.text "island_options"
+    t.text "additional_comment"
+    t.integer "price_by_night"
+    t.string "image"
     t.index ["user_id"], name: "index_islands_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_ratings_on_booking_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,4 +81,6 @@ ActiveRecord::Schema.define(version: 20171205103610) do
   add_foreign_key "bookings", "islands"
   add_foreign_key "bookings", "users"
   add_foreign_key "islands", "users"
+  add_foreign_key "ratings", "bookings"
+  add_foreign_key "ratings", "users"
 end
