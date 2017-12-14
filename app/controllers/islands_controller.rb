@@ -15,6 +15,7 @@ class IslandsController < ApplicationController
       end
 
       @islands = Island.where.not(id: excluded_island_id)
+      @islands = Island.find(params[:search])
     end
   end
 
