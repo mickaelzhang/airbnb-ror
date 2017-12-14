@@ -21,11 +21,11 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User
+            <%= "#{current_user.first_name} #{current_user.last_name}" %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to 'Edit your profile', edit_user_registration_path, class: 'dropdown-item' %>
-            <%= link_to 'Déconnexion', destroy_user_session_path, :method => :delete , class: 'dropdown-item' %>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
           </div>
         </li>
       <% end %>
