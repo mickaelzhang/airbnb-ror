@@ -1,17 +1,20 @@
 <div class="container ">
 	<div class="row">
 		<h2><%= t('home.hero.title') %></h2>
-		<%= form_tag({controller: "islands", action: "index"}, method: "get") do %>
-  		<p>
-    		<%= label :booking, :start_date, "Start date" %><br>
-    		<%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
-  		</p>
-
-  		<p>
-    		<%= label :booking, :end_date, "End date" %><br>
-    		<%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
-  		</p>
-  		<%= submit_tag 'Validez', class: 'btn btn-success' %>
-		<% end %>
 	</div>
+  <%= form_tag({controller: "islands", action: "index"}, method: "get") do %>
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <div>
+          <%= label :booking, :start_date, "Start date" %><br>
+          <%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
+        </div>
+        <div>
+          <%= label :booking, :end_date, "End date" %><br>
+          <%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
+        </div>
+        <%= submit_tag 'Validez', class: 'btn btn-success' %>
+      </div>
+    </div>
+  <% end %>
 </div>
