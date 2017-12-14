@@ -1,8 +1,9 @@
-<ul class="navbar-nav mr-auto">
-  <li class="nav-item active">
-  	<%= link_to 'French', root_path(locale: :fr), class: 'nav-link' %>
-  </li>
-  <li class="nav-item active">
-  	<%= link_to 'English', root_path(locale: :en), class: 'nav-link' %>
-  </li>
-</ul>
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= I18n.locale %>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <%= link_to 'French', root_path(locale: :fr), class: 'dropdown-item' %>
+    <%= link_to 'English', root_path(locale: :en), class: 'dropdown-item' %>
+  </div>
+</li>

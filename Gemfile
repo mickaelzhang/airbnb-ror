@@ -24,8 +24,6 @@ gem 'carrierwave', '~> 0.10.0'
 #helps with the resizing of images in your Rails application.
 gem 'mini_magick', '~> 4.3'
 gem 'fog'
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
