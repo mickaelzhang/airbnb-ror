@@ -1,4 +1,6 @@
-<%= form_with(model: @island, local: true) do |form| %>
+<div class="container">
+  <div class="row">
+    <%= form_with(model: @island, local: true) do |form| %>
   <% if @island.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -13,17 +15,17 @@
     </div>
   <% end %>
 
-  <p>
+  <div class="form-group row">
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
+    <%= form.text_field :title, class: 'form-control',placeholder:'Ile de ...' %>
+  </div>
 
-  <p>
+  <div class="form-group row">
     <%= form.label :description %><br>
-    <%= form.text_area :description %>
-  </p>
+    <%= form.text_area :description, class: 'form-control',placeholder:'Description' %>
+  </div>
 
-  <p>
+  <div class="form-group row ">
     <%= form.label :image %><br>
     <%= form.file_field :image %>
     <% if form.object.image? %>
@@ -31,10 +33,10 @@
       <%= form.label :remove_image %>
       <%= form.check_box :remove_image %> 
     <% end %>
-  </p>
+  </div>
 
 
-  <p>
-    <%= form.submit 'Validez' %>
-  </p>
+  <div class="form-group row">
+    <%= form.submit 'Validez', class: 'btn btn-success' %>
+  </div>
 <% end %>

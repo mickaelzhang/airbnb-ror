@@ -1,14 +1,16 @@
-<% booking = params['booking'] %>
+<div class="container">
+  <div class="row">
+    <% booking = params['booking'] %>
 <h2><%= t('island.index.title') %></h2>
 
 <% if !booking.nil? %>
   <div>
-    <div>
-      <span>Start :</span>
+     <div class="form-group row">
+      <label>Start :</label>
       <span><%= l Date.parse(booking['start_date']) %></span>
     </div>
-    <div>
-      <span>End :</span>
+     <div class="form-group row">
+      <label>End :</label>
       <span><%= l Date.parse(booking['end_date']) %></span>
     </div>
   </div>

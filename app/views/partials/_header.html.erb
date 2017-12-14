@@ -1,27 +1,32 @@
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="menu" data-dropdown-menu>
-      <li class="menu-text"><h1><%= link_to 'Airbnb', root_path %></h1></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu dropdown" data-dropdown-menu>
-      <li>
-        <%= link_to 'Liste annonce', islands_path %>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse bg-faded fixed-top">
+  <%= link_to "Loc'Island", root_path, class: 'navbar-brand' %>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+          <%= link_to 'Liste annonce', islands_path, class: 'nav-link' %>
       </li>
       <% if !user_signed_in? %>
-        <li><%= link_to 'Inscription', new_user_registration_path %></li>
-        <li><%= link_to 'Identification', new_user_session_path %></li>
+        <li class="nav-item active">
+            <%= link_to 'Inscription', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item active">
+            <%= link_to 'Identification', new_user_session_path, class: 'nav-link' %>
+        </li>
       <% else %>
-        <li><%= link_to 'Créer une annonce', new_island_path %></li>
-        <li><%= link_to 'Edit your profile', edit_user_registration_path %></li>
-        <li><%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %></li>
+        <li class="nav-item active">
+            <%= link_to 'Créer une annonce', new_island_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item active">
+            <%= link_to 'Edit your profile', edit_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item active">
+            <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        </li>
       <% end %>
     </ul>
+    <%= render "partials/change_locale" %>
   </div>
-</div>
-
-<%= render "partials/change_locale" %>
+</nav>
 
 <% if notice %>
   <p class="notice"><%= notice %></p>
