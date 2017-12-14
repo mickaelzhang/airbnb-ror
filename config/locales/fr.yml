@@ -30,4 +30,14 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 fr:
+  date:
+    formats:
+      default: "%d/%m/%Y"
   hello: "Bonjour monde"
+  island:
+    index:
+      title: "Liste des îles"
+    new:
+      title: "Création nouvelle ile"
+    edit:
+      title: "Editez l'ile"

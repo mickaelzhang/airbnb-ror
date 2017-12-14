@@ -1,4 +1,28 @@
-<h1>Airbnb</h1>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="menu" data-dropdown-menu>
+      <li class="menu-text"><h1><%= link_to 'Airbnb', root_path %></h1></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu dropdown" data-dropdown-menu>
+      <li>
+        <%= link_to 'Liste annonce', islands_path %>
+      </li>
+      <% if !user_signed_in? %>
+        <li><%= link_to 'Inscription', new_user_registration_path %></li>
+        <li><%= link_to 'Identification', new_user_session_path %></li>
+      <% else %>
+        <li><%= link_to 'Créer une annonce', new_island_path %></li>
+        <li><%= link_to 'Réservations', bookings_path %></li>
+        <li><%= link_to 'Edit', edit_user_registration_path %></li>
+        <li><%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= render "partials/change_locale" %>
 
 <% if notice %>
   <p class="notice"><%= notice %></p>
@@ -6,16 +30,3 @@
 <% if alert %>
   <p class="alert"><%= alert %></p>
 <% end %>
-
-<div>
-  <% if !user_signed_in? %>
-    <%= link_to 'Inscription', new_user_registration_path %>
-    <%= link_to 'Identification', new_user_session_path %>
-  <% else %>
-    <p><%= current_user.inspect %></p>
-    <%= link_to 'Edit', edit_user_registration_path %>
-    <%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %>
-  <% end %>
-</div>
-
-<%= render "partials/change_locale" %>
