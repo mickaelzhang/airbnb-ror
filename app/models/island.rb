@@ -1,6 +1,4 @@
 class Island < ApplicationRecord
-  belongs_to :user
-
   validates :title, presence: true
   validates :island_type, presence: true
   validates :description, presence: true
@@ -22,6 +20,7 @@ class Island < ApplicationRecord
 
   belongs_to :user
   has_many :bookings
+  has_many :ratings, through: :bookings
 
   def self.add_bookings
     joins("LEFT JOIN bookings ON bookings.island_id = islands.id")
@@ -45,16 +44,20 @@ class Island < ApplicationRecord
         start_date, end_date, start_date, end_date, start_date, start_date, end_date, end_date)
   end
 
-  def self.available_between(start_date, end_date)
-    joins("LEFT JOIN bookings ON bookings.island_id = islands.id")
-      .includes(:bookings)
-      # .where("(? < bookings.start_date) OR (bookings.end_date < ?) OR (bookings.id is null)", end_date, start_date)
+  # Return a boolean depending if the island is available or not
+  def is_available_between(start_date, end_date)
+    number_of_booking = self.bookings.where('(? <= bookings.start_date AND bookings.start_date <= ?)
+        OR (? <= bookings.end_date AND bookings.end_date <= ?)
+        OR (bookings.start_date <= ? AND ? <= bookings.end_date)
+        OR (bookings.start_date <= ? AND ? <= bookings.end_date)',
+        start_date, end_date, start_date, end_date, start_date, start_date, end_date, end_date).count
+
+    return  number_of_booking <= 0
   end
 
-  scope :by_id_available_between, -> (island_id, start_date, end_date) {
-    available_between(start_date, end_date)
-      .exists?(:islands => { :id => island_id })
-  }
+  def average_rating
+    self.ratings.average(:rating_score)
+  end
 
   private
   def image_size_validation
