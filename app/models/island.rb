@@ -29,7 +29,7 @@ class Island < ApplicationRecord
 
   def self.search(search)
     if search
-      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+      where('title LIKE ?', "%#{search}%")
     else
       find(:all)
     end
