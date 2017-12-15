@@ -33,7 +33,13 @@ fr:
   date:
     formats:
       default: "%d/%m/%Y"
-  hello: "Bonjour monde"
+  home:
+    title: "Bienvenue"
+    form:
+      label:
+        start_date: "Départ"
+        end_date: "Retour"
+      submit: "Chercher"
   island:
     index:
       title: "Liste des îles"
