@@ -3,6 +3,10 @@
   <div><%= link_to 'Edit', edit_island_path %></div>
 <% end %>
 
+<div>
+  Score : <%= @island.average_rating %>/5
+</div>
+
 <p><%= @island.description %></p>
 
 <% if !@island.image.nil? %>
