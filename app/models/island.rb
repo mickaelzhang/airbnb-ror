@@ -17,6 +17,8 @@ class Island < ApplicationRecord
   validates :description, presence: true, length: {maximum: 300}
   validates_processing_of :image
   validate :image_size_validation
+  scope :island_options, -> (island_options) {where island_options: island_options}
+  scope :location, -> (location) {where location: location}
 
   belongs_to :user
   has_many :bookings

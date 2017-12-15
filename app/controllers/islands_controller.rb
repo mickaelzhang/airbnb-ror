@@ -4,9 +4,10 @@ class IslandsController < ApplicationController
   before_action :require_author, only: [:edit, :update]
 
   def index
-
     if params[:search]
       @islands = Island.search(params[:search])
+      @islands = @islands.island_options(params[:island_options]) if params[:island_options].present?
+      @islands = @islands.location(params[:location]) if params[:location].present?
     else
       if params[:booking]
         booking = params['booking']
