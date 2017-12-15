@@ -1,42 +1,43 @@
 <div class="container">
   <div class="row">
     <%= form_with(model: @island, local: true) do |form| %>
-  <% if @island.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@island.errors.count, "error") %> prohibited
-        this island from being saved:
-      </h2>
-      <ul>
-        <% @island.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+      <% if @island.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@island.errors.count, "error") %> prohibited
+            this island from being saved:
+          </h2>
+          <ul>
+            <% @island.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group row">
+        <%= form.label :title %><br>
+        <%= form.text_field :title, class: 'form-control',placeholder:'Ile de ...' %>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label :description %><br>
+        <%= form.text_area :description, class: 'form-control',placeholder:'Description' %>
+      </div>
+
+      <div class="form-group row ">
+        <%= form.label :image %><br>
+        <%= form.file_field :image %>
+        <% if form.object.image? %>
+          <%= image_tag form.object.image.thumb.url %>
+          <%= form.label :remove_image %>
+          <%= form.check_box :remove_image %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+      </div>
 
-  <div class="form-group row">
-    <%= form.label :title %><br>
-    <%= form.text_field :title, class: 'form-control',placeholder:'Ile de ...' %>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :description %><br>
-    <%= form.text_area :description, class: 'form-control',placeholder:'Description' %>
-  </div>
-
-  <div class="form-group row ">
-    <%= form.label :image %><br>
-    <%= form.file_field :image %>
-    <% if form.object.image? %>
-      <%= image_tag form.object.image.thumb.url %>
-      <%= form.label :remove_image %>
-      <%= form.check_box :remove_image %> 
+      <div class="form-group row">
+        <%= form.submit 'Validez', class: 'btn btn-success' %>
+      </div>
     <% end %>
   </div>
-
-
-  <div class="form-group row">
-    <%= form.submit 'Validez', class: 'btn btn-success' %>
-  </div>
-<% end %>
+</div>
