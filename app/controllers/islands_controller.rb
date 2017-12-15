@@ -6,8 +6,9 @@ class IslandsController < ApplicationController
   def index
     if params[:search]
       @islands = Island.search(params[:search])
-      @islands = @islands.island_options(params[:island_options]) if params[:island_options].present?
-      @islands = @islands.location(params[:location]) if params[:location].present?
+      filtering_params(params).each do |key, value|
+        @islands = @islands.public_send(key, value) if value.present?
+      end
     else
       if params[:booking]
         booking = params['booking']
@@ -23,6 +24,12 @@ class IslandsController < ApplicationController
         @islands = Island.all
       end
     end
+  end
+
+  private
+
+  def filtering_params(params)
+    params.slice(:island_options, :location)
   end
 
   def new
