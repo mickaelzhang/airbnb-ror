@@ -1,117 +1,121 @@
 <div class="container">
-  <div class="row">
     <%= form_with(model: @island, local: true) do |form| %>
-      <% if @island.errors.any? %>
-        <div id="error_explanation">
-          <h2>
-            <%= pluralize(@island.errors.count, "error") %> prohibited
-            this island from being saved:
-          </h2>
-          <ul>
-            <% @island.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="form-group">
-        <%= form.label :title %>
-        <%= form.text_field :title, class: 'form-control', placeholder:'Ile de ...' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :description %>
-        <%= form.text_area :description, class: 'form-control', placeholder:'Description' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :island_type %>
-        <select class="form-control" name="island[island_type]" id="post_island_type_id">
-          <option value="">Selectionner le type</option>
-          <option value="private">Ile privée</option>
-          <option value="shared">Ile partagée</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :size %>
-        <%= form.number_field :size, { min:1, class: 'form-control' } %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :location %>
-        <%= form.text_field :location, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :nb_accomodation %>
-        <%= form.number_field :nb_accomodation, { min:1, class: 'form-control' } %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :max_person %>
-        <%= form.number_field :max_person, { min:1, class: 'form-control' } %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :max_bed_room %>
-        <%= form.number_field :max_bed_room, { min:1, class: 'form-control' } %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :max_bed %>
-        <%= form.number_field :max_bed, { min:1, class: 'form-control' } %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :max_bath_room %>
-        <%= form.number_field :max_bath_room, { min:1, class: 'form-control' } %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :address %>
-        <%= form.text_field :address, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :island_options %>
-        <% island_options = ['piscine', 'jacuzzi', 'cuisinier_personnel'] %>
-        <% island_options.each do |island_option| %>
-          <div>
-            <%= form.check_box :island_options, {multiple: true}, island_option, false %>
-            <%= form.label island_option %>
+      <div class="row">
+        <% if @island.errors.any? %>
+          <div class="col-12">
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@island.errors.count, "error") %> prohibited
+                this island from being saved:
+              </h2>
+              <ul>
+                <% @island.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         <% end %>
-      </div>
 
-      <div class="form-group">
-        <%= form.label :additional_comment %>
-        <%= form.text_area :additional_comment, class: 'form-control' %>
-      </div>
+        <div class="col-12 col-lg-6">
+          <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: 'form-control', placeholder:'Ile de ...' %>
+          </div>
 
-      <div class="form-group">
-        <%= form.label :price_by_night %>
-        <%= number_field(:island, :price_by_night, class: 'form-control') %>
-      </div>
+          <div class="form-group">
+            <%= form.label :description %>
+            <%= form.text_area :description, class: 'form-control', placeholder:'Description' %>
+          </div>
 
-      <div class="form-group">
-        <%= form.label :description %>
-        <%= form.text_area :description, class: 'form-control' %>
-      </div>
+          <div class="form-group">
+            <%= form.label :price_by_night %>
+            <%= number_field(:island, :price_by_night, class: 'form-control') %>
+          </div>
 
-      <div class="form-group">
-        <%= form.label :image %>
-        <%= form.file_field :image %>
-        <% if form.object.image? %>
-          <%= image_tag form.object.image.thumb.url %>
-          <%= form.label :remove_image %>
-          <%= form.check_box :remove_image %>
-        <% end %>
-      </div>
+          <div class="form-group">
+            <%= form.label :location %>
+            <%= form.text_field :location, class: 'form-control' %>
+          </div>
 
-      <div class="form-group">
-        <%= form.submit 'Validez', class: 'btn btn-success' %>
+          <div class="form-group">
+            <%= form.label :address %>
+            <%= form.text_field :address, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :island_options %>
+            <% island_options = ['piscine', 'jacuzzi', 'cuisinier_personnel'] %>
+            <% island_options.each do |island_option| %>
+              <div>
+                <%= form.check_box :island_options, {multiple: true}, island_option, false %>
+                <%= form.label island_option %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="form-group">
+            <%= form.label :island_type %>
+            <select class="form-control" name="island[island_type]" id="post_island_type_id">
+              <option value="">Selectionner le type</option>
+              <option value="private">Ile privée</option>
+              <option value="shared">Ile partagée</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :size %>
+            <%= form.number_field :size, { min:1, class: 'form-control' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :nb_accomodation %>
+            <%= form.number_field :nb_accomodation, { min:1, class: 'form-control' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :max_person %>
+            <%= form.number_field :max_person, { min:1, class: 'form-control' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :max_bed_room %>
+            <%= form.number_field :max_bed_room, { min:1, class: 'form-control' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :max_bed %>
+            <%= form.number_field :max_bed, { min:1, class: 'form-control' } %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :max_bath_room %>
+            <%= form.number_field :max_bath_room, { min:1, class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <%= form.label :image %>
+            <%= form.file_field :image %>
+            <% if form.object.image? %>
+              <%= image_tag form.object.image.thumb.url %>
+              <%= form.label :remove_image %>
+              <%= form.check_box :remove_image %>
+            <% end %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :additional_comment %>
+            <%= form.text_area :additional_comment, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="col-12 form-group">
+          <%= form.submit 'Validez', class: 'btn btn-success' %>
+        </div>
       </div>
     <% end %>
   </div>
