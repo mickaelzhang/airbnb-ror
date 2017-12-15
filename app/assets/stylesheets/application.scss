@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+.hero {
+  height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  &__date-input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__input-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    margin: 0 0 0 8px;
+  }
+}
