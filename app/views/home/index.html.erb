@@ -10,7 +10,8 @@
         <%= label :booking, :end_date, t('home.form.label.end_date'), class: "hero__input-label" %>
         <%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
       </div>
-      <%= submit_tag t('home.form.submit'), class: 'btn btn-success' %>
+      <%= submit_tag t('home.form.submit'), class: 'btn btn-success', name: nil %>
     <% end %>
   </div>
 </div>
+
