@@ -27,6 +27,14 @@ class Island < ApplicationRecord
         .includes(:bookings)
   end
 
+  def self.search(search)
+    if search
+      where('lower(title) LIKE ?', "%#{search}%")
+    else
+      find(:all)
+    end
+  end
+
   def self.not_available_list(start_date, end_date)
     add_bookings()
       .where('(? <= bookings.start_date AND bookings.start_date <= ?)
