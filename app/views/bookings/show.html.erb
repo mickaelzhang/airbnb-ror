@@ -1,5 +1,10 @@
-
-<h2>Booking : <%= @island.title %></h2>
-<div><%= @booking.start_date %> to <%= @booking.end_date %></div>
-<div><%= @booking.duration %> days</div>
-<div><%= @booking.price %>€</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Booking : <%= @island.title %></h2>
+      <div><%= l @booking.start_date %> to <%= l @booking.end_date %></div>
+      <div>Duration: <%= @booking.duration %> days</div>
+      <div>Prix: <%= @booking.price %>€</div>
+    </div>
+  </div>
+</div>

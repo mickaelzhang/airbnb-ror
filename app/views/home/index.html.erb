@@ -1,13 +1,17 @@
-<h2><%= t('home.hero.title') %></h2>
-<%= form_tag({controller: "islands", action: "index"}, method: :get) do %>
-  <p>
-    <%= label :booking, :start_date, "Start date" %><br>
-    <%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
-  </p>
+<div class="hero">
+  <div class="hero__container container">
+    <h2 class="hero__title"><%= t('home.title') %></h2>
+    <%= form_tag({controller: "islands", action: "index"}, method: "get", class: "hero__form") do %>
+      <div class="hero__date-input">
+        <%= label :booking, :start_date, t('home.form.label.start_date'), class: "hero__input-label" %>
+        <%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
+      </div>
+      <div class="hero__date-input">
+        <%= label :booking, :end_date, t('home.form.label.end_date'), class: "hero__input-label" %>
+        <%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
+      </div>
+      <%= submit_tag t('home.form.submit'), class: 'btn btn-success', name: nil %>
+    <% end %>
+  </div>
+</div>
 
-  <p>
-    <%= label :booking, :end_date, "End date" %><br>
-    <%= date_field :booking, :end_date, :value => Time.now.strftime("%Y-%m-%d") %>
-  </p>
-  <%= submit_tag 'Validez', name: nil %>
-<% end %>

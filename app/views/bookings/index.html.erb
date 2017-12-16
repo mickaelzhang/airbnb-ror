@@ -1,30 +1,48 @@
-<h2>Mes prochaines réservations</h2>
-<% @bookings.are_done(false).each do |booking| %>
-  <div>
-    <span><%= booking.island.title %></span>
-    <span><%= l booking.start_date %> - <%= l booking.end_date %></span>
-    <span><%= link_to("Show island", island_path(booking.island)) %></span>
-    <span><%= link_to("Booking detail", booking_path(booking)) %></span>
-  </div>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Mes prochaines réservations</h2>
+      <div>
+        <% if @bookings.are_done(false).count != 0 %>
+          <% @bookings.are_done(false).each do |booking| %>
+            <div>
+              <span><%= booking.island.title %></span>
+              <span><%= l booking.start_date %> - <%= l booking.end_date %></span>
+              <span><%= link_to("Show island", island_path(booking.island)) %></span>
+              <span><%= link_to("Booking detail", booking_path(booking)) %></span>
+            </div>
+          <% end %>
+        <% else %>
+          Pas de réservations
+        <% end %>
+      </div>
 
-<h2>Anciennes réservations</h2>
-<% @bookings.are_done(true).each do |booking| %>
-  <div>
-    <span><%= booking.island.title %></span>
-    <span><%= l booking.start_date %> - <%= l booking.end_date %></span>
-    <span><%= link_to("Show island", island_path(booking.island)) %></span>
-    <span><%= link_to("Booking detail", booking_path(booking)) %></span>
-    <% if booking.rating %>
-      <span>Score : <%= booking.rating.rating_score %>/5</span>
-    <% else %>
-      <%= form_with(model: @rating, local: true) do |f| %>
-        <%= f.hidden_field :booking_id, value: booking.id %>
-        <span>
-          <%= f.number_field :rating_score, in: 0..5 %>
-        </span>
-        <%= f.submit 'Rate' %>
-      <% end %>
-    <% end %>
+      <h2>Anciennes réservations</h2>
+      <div>
+        <% if @bookings.are_done(true).count != 0 %>
+          <% @bookings.are_done(true).each do |booking| %>
+            <div>
+              <span><%= booking.island.title %></span>
+              <span><%= l booking.start_date %> - <%= l booking.end_date %></span>
+              <span><%= link_to("Show island", island_path(booking.island)) %></span>
+              <span><%= link_to("Booking detail", booking_path(booking)) %></span>
+              <% if booking.rating %>
+                <span>Score : <%= booking.rating.rating_score %>/5</span>
+              <% else %>
+                <%= form_with(model: @rating, local: true) do |f| %>
+                  <%= f.hidden_field :booking_id, value: booking.id %>
+                  <span>
+                    <%= f.number_field :rating_score, in: 0..5 %>
+                  </span>
+                  <%= f.submit 'Rate' %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% else %>
+            Pas d'anciennes réservations
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

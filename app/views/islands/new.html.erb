@@ -1,5 +1,11 @@
-<h2><%= t('island.new.title') %></h2>
+<div class="container">
+	<div class="row">
+		<h2 class="form-group row" ><%= t('island.new.title') %></h2>
 
-<%= render 'form' %>
+		<%= render 'form' %>
 
-<%= link_to 'Back', islands_path %>
+		<div class="form-group row">
+			<%= link_to 'Back', islands_path %>
+		</div>
+	</div>
+</div>
