@@ -26,15 +26,16 @@ fr:
         unlock_token: Clé de déverrouillage
         updated_at: Date de mise à jour
       island:
+        title: Titre
         island_type: Type d'île
-        size: Taille de l'île
+        size: Taille de l'île (en km²)
         location: Localisation de l'île
         nb_accomodation: Nombre d'hébergement
         max_person: Nombre de personne total
         max_bed_room: Nombre de chambre total
-        max_bed: Nombre de lit
-        max_bath_room: Nombre de salle de bain
-        adress: Adresse
+        max_bed: Nombre de lits
+        max_bath_room: Nombre de salles de bain
+        address: Adresse
         island_options: Options sur l'île
         additional_comment: Commentaire additionnel
         price_by_night: Prix par nuit (en €)

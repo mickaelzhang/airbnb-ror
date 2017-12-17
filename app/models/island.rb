@@ -10,7 +10,6 @@ class Island < ApplicationRecord
   validates :max_bed, presence: true, numericality: { greater_than: 1 }
   validates :max_bath_room, presence: true, numericality: { greater_than: 1 }
   validates :address, presence:true
-  validates :island_options, presence:true
   validates :price_by_night, numericality: { only_integer: true }
   mount_uploader :image, ImageUploader
   validates :title, presence: true, length: {maximum: 65}
