@@ -1,7 +1,7 @@
 <div class="hero">
   <div class="hero__container container">
     <h2 class="hero__title"><%= t('home.title') %></h2>
-    <%= form_tag({controller: "islands", action: "index"}, method: "get", class: "hero__form") do %>
+    <%= form_tag({controller: "islands", action: "index"}, method: :get, class: "hero__form") do %>
       <div class="hero__date-input">
         <%= label :booking, :start_date, t('home.form.label.start_date'), class: "hero__input-label" %>
         <%= date_field :booking, :start_date, :value => Time.now.strftime("%Y-%m-%d") %>
