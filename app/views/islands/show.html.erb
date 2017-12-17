@@ -22,6 +22,24 @@
       <% if !@island.image.nil? %>
         <img src="<%= @island.image %>">
       <% end %>
+      <br />
+        <span>Taille : <%= @island.size %>km²</span>
+      <br />
+        <span>Prix par nuit : <%= @island.price_by_night %>€</span>
+      <br />
+        <span>Type d'île : <%= @island.island_type %></span>
+      <br />
+        <span>Capacitée maximum : <%= @island.max_person %> personnes</span>
+      <br />
+        <span>Nombre de chambre : <%= @island.max_bed_room %></span>
+      <br />
+        <span>Nombre de lit : <%= @island.max_bed %></span>
+      <br />
+        <span>Nombre de salle de bain : <%= @island.max_bath_room %></span>
+      <br />
+      <% if @island.additional_comment %>
+        <span><%= @island.additional_comment %></span>
+      <% end %>
     </div>
 
     <div class="island__booking">
