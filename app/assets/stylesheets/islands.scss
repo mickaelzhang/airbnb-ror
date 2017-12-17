@@ -2,9 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container {
+  margin-top: 4vh;
+}
 
 .island {
   &__filter-button {
     cursor: pointer;
   }
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between
 }
