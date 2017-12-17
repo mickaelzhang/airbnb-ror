@@ -5,27 +5,26 @@
     </div>
   </div>
 
-  <div class="row">
+  <div>
     <div class="col-12 col-md-auto">
       <h2><%= @island.title %></h2>
+      <h4>Localisation : <%= @island.location %></h4>
       <% if user_signed_in? && current_user.id == @island.user_id %>
-        <div><%= link_to 'Edit', edit_island_path %></div>
+        <%= link_to 'Edit', edit_island_path %>
       <% end %>
-
+      <br />
       <% if !@island.average_rating.nil? %>
-        <div>
           Score : <%= @island.average_rating %>/5
-        </div>
       <% end %>
-
-      <p><%= @island.description %></p>
-
+      <br />
+      <span>Description : <%= @island.description %></span>
+      <br />
       <% if !@island.image.nil? %>
         <img src="<%= @island.image %>">
       <% end %>
     </div>
 
-    <div class="col-12 col-md-3">
+    <div class="island__booking">
       <%= render "islands/book_island_sidebar" %>
     </div>
   </div>
