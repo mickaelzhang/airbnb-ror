@@ -45,18 +45,16 @@
         <div class="island__hidden">
           <%= text_field_tag :location, nil, :placeholder => 'Localisation (optionnel)' %>
           <%-# Can be improved-%>
-            <div>
-                <span>Piscine</span>
-                <%= check_box_tag :island_options, "piscine" %>
-              <div>
-                <span>Jacuzzi</span>
-                <%= check_box_tag :island_options, "jacuzzi" %>
-              </div>
-              <div>
-                <span>Cuisinier Personnel</span>
-                <%= check_box_tag :island_options, "cuisinier_personnel" %>
-              </div>
-            </div>
+          <div>
+            <span>Piscine</span>
+            <%= check_box_tag :island_options, "piscine" %>
+            <br />
+            <span>Jacuzzi</span>
+            <%= check_box_tag :island_options, "jacuzzi" %>
+            <br />
+            <span>Cuisinier Personnel</span>
+            <%= check_box_tag :island_options, "cuisinier_personnel" %>
+          </div>
         </div>
         <div>
         </div>
