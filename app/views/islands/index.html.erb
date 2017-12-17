@@ -5,12 +5,15 @@
       <h2><%= t('island.index.title') %></h2>
     </div>
 
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-9 island__available">
       <% @islands.each do |island| %>
-        <div>
+        <div class="list-group-item">
           <span><%= island.title %></span>
+          <div>
+            <span><%= island.price_by_night %>€ par nuit</span>
+          </div>
           <%=
-            link_to_if(booking.nil?, "Show", island_path(island)) do
+            link_to_if(booking.nil?, "Détails", island_path(island)) do
                 link_to('Show', island_path(island, :booking => { :start_date => booking['start_date'], :end_date => booking['end_date'] }))
             end
           %>
@@ -36,8 +39,25 @@
           <%= hidden_field :booking, :start_date, :value => booking['start_date'] %>
           <%= hidden_field :booking, :end_date, :value => booking['end_date'] %>
         <% end %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Search', name: nil%>
+        <%= text_field_tag :search, nil, :class => "", :placeholder => 'Titre de l\'annonce' %>
+         <%= submit_tag 'Search', name: nil%>
+        <span class="badge badge-pill badge-primary island__filter-button">Affinez vos recherches</span>
+        <div class="island__hidden">
+          <%= text_field_tag :location, nil, :placeholder => 'Localisation (optionnel)' %>
+          <%-# Can be improved-%>
+          <div>
+            <span>Piscine</span>
+            <%= check_box_tag :island_options, "piscine" %>
+            <br />
+            <span>Jacuzzi</span>
+            <%= check_box_tag :island_options, "jacuzzi" %>
+            <br />
+            <span>Cuisinier Personnel</span>
+            <%= check_box_tag :island_options, "cuisinier_personnel" %>
+          </div>
+        </div>
+        <div>
+        </div>
       <% end %>
     </div>
   </div>

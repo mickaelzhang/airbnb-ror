@@ -17,6 +17,8 @@ class Island < ApplicationRecord
   validates :description, presence: true, length: {maximum: 300}
   validates_processing_of :image
   validate :image_size_validation
+  scope :island_options, -> (island_options) {where('lower(island_options) LIKE ?', "%#{island_options}%")}
+  scope :location, -> (location) {where('lower(location) LIKE ?', "%#{location}%")}
 
   belongs_to :user
   has_many :bookings
@@ -30,6 +32,7 @@ class Island < ApplicationRecord
   def self.search(search)
     if search
       where('lower(title) LIKE ?', "%#{search}%")
+      where('lower(description) LIKE ?', "%#{search}%")
     else
       find(:all)
     end
