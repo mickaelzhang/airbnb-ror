@@ -43,6 +43,7 @@
             <%= form.text_field :address, class: 'form-control' %>
           </div>
 
+          <%-#Nice to have: Create options-%>
           <div class="form-group">
             <%= form.label :island_options %>
             <% island_options = ['piscine', 'jacuzzi', 'cuisinier_personnel'] %>
@@ -60,8 +61,8 @@
             <%= form.label :island_type %>
             <select class="form-control" name="island[island_type]" id="post_island_type_id">
               <option value="">Selectionner le type</option>
-              <option value="private">Ile privée</option>
-              <option value="shared">Ile partagée</option>
+              <option value="privée">Ile privée</option>
+              <option value="partagée">Ile partagée</option>
             </select>
           </div>
 
