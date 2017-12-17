@@ -10,6 +10,12 @@
   &__filter-button {
     cursor: pointer;
   }
+
+  &__booking {
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .list-group-item {
