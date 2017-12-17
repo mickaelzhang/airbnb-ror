@@ -40,7 +40,18 @@
         <span class="badge badge-pill badge-info island__filter-button">Affinez vos recherches</span>
         <div class="island__hidden">
           <%= text_field_tag :location, nil, :placeholder => 'Localisation (optionnel)' %>
-
+            <div>
+              <span>Piscine</span>
+              <%= check_box_tag :island_options, "piscine" %>
+              <div>
+                <span>Jacuzzi</span>
+                <%= check_box_tag :island_options, "jacuzzi" %>
+              </div>
+              <div>
+                <span>Cuisinier Personnel</span>
+                <%= check_box_tag :island_options, "cuisinier_personnel" %>
+              </div>
+            </div>
         </div>
         <div>
         <%= submit_tag 'Search', name: nil%>
