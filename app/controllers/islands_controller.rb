@@ -34,7 +34,7 @@ class IslandsController < ApplicationController
     @island.user_id = current_user.id
 
     if @island.save
-      redirect_to @island, notice: 'Island was successfully created.'
+      redirect_to @island, notice: 'Votre annonce a bien été créée'
     else
       render :new
     end
@@ -53,7 +53,7 @@ class IslandsController < ApplicationController
 
   def update
     if @island.update(island_params)
-      redirect_to @island, notice: 'Island was successfully updated.'
+      redirect_to @island, notice: 'Votre annonce a bien été modifiée'
     else
       render :edit
     end
