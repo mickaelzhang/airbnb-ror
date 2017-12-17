@@ -39,7 +39,7 @@
           <%= hidden_field :booking, :start_date, :value => booking['start_date'] %>
           <%= hidden_field :booking, :end_date, :value => booking['end_date'] %>
         <% end %>
-        <%= text_field_tag :search, nil, :class => "", :placeholder => 'Titre de l\'annonce' %>
+        <%= text_field_tag :search, nil, :placeholder => 'Titre de l\'annonce' %>
          <%= submit_tag 'Search', name: nil%>
         <span class="badge badge-pill badge-primary island__filter-button">Affinez vos recherches</span>
         <div class="island__hidden">
